@@ -41,4 +41,5 @@ spec:
       - kube-state-metrics
       - apiserver
       - kubelet
+      - mpfsserver
   

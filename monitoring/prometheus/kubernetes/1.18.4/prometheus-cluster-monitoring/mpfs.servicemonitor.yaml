@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: mpfsserver
+  name: kube-mpfsserver
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: mpfs-node-app
+  endpoints:
+  - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+    interval: 2s
+    port: mpfsappport 
+    tlsConfig:
+      caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      serverName: kubernetes
+  namespaceSelector:
+    matchNames:
+    - default
+
